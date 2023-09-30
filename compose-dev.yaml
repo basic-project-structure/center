@@ -1,0 +1,18 @@
+# https://docs.docker.com/compose/compose-file/05-services/
+services:
+
+  api:
+    entrypoint:
+      - sleep
+      - infinity
+    image: golang:latest
+    init: true
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+      - go:/go
+
+volumes:
+  go:
+    external: true
